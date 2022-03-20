@@ -1,0 +1,15 @@
+{#include base title='Edit Book'}
+
+{#body}
+<h1>Edit Book</h1>
+<form action="/edit" method="POST">
+	<input type="hidden" name="id" value="{book.id}">
+	<input type="text" name="isbn" placeholder="ISBN" value="{book.isbn}"><br>
+	<input type="text" name="title" placeholder="Title" value="{book.title}"><br>
+	<input type="text" name="authors" placeholder="Authors" value="{book.authors}"><br>
+	<input type="text" name="description" placeholder="Description" value="{book.description}"><br>
+	<input class="green" type="submit" value="Update Book">
+</form>
+{/body}
+
+{/include}

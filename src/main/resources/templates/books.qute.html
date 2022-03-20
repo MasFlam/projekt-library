@@ -1,0 +1,41 @@
+{#include base title='Books'}
+
+{#body}
+<h1>Books</h1>
+<a href="/add"><button>Add Book</button></a>
+<a href="/search"><button>Search</button></a>
+{#if searched}<a href="/books"><button>All Books</button></a>{/if}
+<table>
+	<thead>
+		<tr>
+			<th>ISBN</th>
+			<th>Title</th>
+			<th>Authors</th>
+			<th>Description</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#for book in books}
+		<tr>
+			<td>{book.isbn}</td>
+			<td>{book.title}</td>
+			<td>{book.authors}</td>
+			<td>{book.description}</td>
+			<td><a href="/edit?id={book.id}"><button class="green">Edit</button></a></td>
+			<td><input class="red" form="del_{book.id}" type="submit" value="Delete"></td>
+		</tr>
+		{/for}
+	</tbody>
+</table>
+<div style="display: none;">
+	{#for book in books}
+	<form id="del_{book.id}" action="/delete?id={book.id}" method="POST">
+		<input type="hidden" name="id" value="{book.id}">
+	</form>
+	{/for}
+</div>
+{/body}
+
+{/include}
