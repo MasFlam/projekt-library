@@ -56,6 +56,9 @@ public class WebResource {
 	@POST
 	@Transactional
 	public Response signup(@FormParam("username") String username, @FormParam("password") String password) {
+		if (username == null || password == null || username.isBlank() || password.isBlank()) {
+			return Response.status(Response.Status.FOUND).location(URI.create("/?formerror=Username%20and%20password%20cannot%20be%20blank")).build();
+		}
 		if (userRepo.findByUsername(username) != null) {
 			return Response.status(Response.Status.FOUND).location(URI.create("/?formerror=Username%20taken")).build();
 		}
